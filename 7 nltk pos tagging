@@ -1,10 +1,12 @@
 import nltk
-from nltk import pos_tag, word_tokenize
-def perform_pos_tagging(text):
-    words = word_tokenize(text)
-    tagged_words = pos_tag(words)
-    return tagged_words
-text = "NLTK is a powerful library for natural language processing."
-tagged_words = perform_pos_tagging(text)
-print("Original Text:", text)
-print("Part-of-Speech Tagging Result:", tagged_words)
+nltk.download('wordnet')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
+sentence = "the sun is shining brightly,I love reading interesting books."
+tokens = nltk.word_tokenize(sentence)
+
+for token in tokens:
+    pos_tag = nltk.pos_tag([token])[0][1]
+    lemmatized_word = nltk.WordNetLemmatizer().lemmatize(token)
+    print(f"org: {token}, pos={pos_tag}, Lemma={lemmatized_word}")
